@@ -1,0 +1,19 @@
+# Force numpy 1.x for compatibility
+numpy==1.26.4
+
+scikit-learn
+pydantic
+python-dotenv
+clearml
+openai
+fastapi
+requests
+uvicorn
+httpx
+
+# CPU-only PyTorch (small)
+torch==2.2.0+cpu
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+# Embedding library
+sentence-transformers

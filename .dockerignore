@@ -1,0 +1,6 @@
+.env
+.gitignore
+Dockerfile
+docker-compose.yml
+.idea
+__pycache__
