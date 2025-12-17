@@ -168,6 +168,8 @@ def run_experiment_sync(payload: dict, exp_id: str):
         task = Task.init(project_name="RAG Prompt Evaluation", task_name=exp_id)
         logger.info(f"ClearML Task: {task.id}")
 
+        result_url = task.get_output_log_web_page()
+
         models = payload["models"]
         prompts = payload["prompts"]
         temperatures = payload["temperatures"]
@@ -311,7 +313,8 @@ def run_experiment_sync(payload: dict, exp_id: str):
             "top_10_combinations": top_10_combinations,
             "total_combinations": len(combo_averages),
             "all_combo_scores": {k: float(v) for k, v in combo_scores.items()},
-            "processing_time": round(processing_time, 2)
+            "processing_time": round(processing_time, 2),
+            "clearml_url": result_url
         }
 
         # Save and log
@@ -345,7 +348,8 @@ async def start_experiment(payload: ExperimentPayload):
         "peak_weighted_score": results["best_config"]["weighted_score"],
         "best_config": results["best_config"],
         "all_results": results["top_10_combinations"],
-        "total_combos": results["total_combinations"]
+        "total_combos": results["total_combinations"],
+        "clearml_url": results["clearml_url"]
     }
 
 
